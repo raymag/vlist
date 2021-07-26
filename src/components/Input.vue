@@ -10,9 +10,19 @@ export default {
           taskText: '',
       }
   },
+  props: {
+      refresh: Function,
+  },
   methods: {
       add() {
-          console.log(this.taskText);
+          const todoList = JSON.parse(localStorage.getItem("todoList"));
+          if (todoList && todoList.length !== 0) {
+              todoList.push(this.taskText);
+              localStorage.setItem("todoList", JSON.stringify(todoList));
+          } else {
+              localStorage.setItem("todoList", JSON.stringify([this.taskText]));
+          }
+          this.refresh();
           this.taskText = '';
       },
       keydownHandler(e){

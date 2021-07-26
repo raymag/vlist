@@ -1,9 +1,6 @@
 <template>
   <section>
-    <Task />
-    <Task />
-    <Task />
-    <Task />
+    <Task v-for="task in tasks" :task="task" v-bind:key="task.index" :refresh="refresh" :id="tasks.indexOf(task)" />
   </section>
 </template>
 
@@ -13,7 +10,8 @@ import Task from "./Task.vue";
 export default {
   name: "TaskList",
   props: {
-    task: [String],
+    tasks: Array,
+    refresh: Function,
   },
   components: {
     Task,

@@ -2,10 +2,10 @@
   <div id="app">
     <main>
       <Header/>
-      <Input />
-      <TaskList/>
+      <Input :refresh="refresh" />
+      <TaskList :refresh="refresh" :tasks="todoList" />
 
-    <span id="deleteAll">Apagar Tudo</span>
+    <span id="deleteAll" v-on:click="delAll()">Apagar Tudo</span>
     </main>
   </div>
 </template>
@@ -21,6 +21,25 @@ export default {
     Header,
     Input,
     TaskList,
+  },
+  data(){
+    return {
+      todoList: JSON.parse(localStorage.getItem("todoList")) || []
+    }
+  },
+  methods: {
+    refresh() {
+      const todoList = JSON.parse(localStorage.getItem("todoList"));
+      if (todoList) {
+        this.todoList = todoList;
+      } else {
+        this.todoList = [];
+      }
+    }, 
+    delAll(){
+      localStorage.removeItem("todoList");
+      this.refresh();
+    }
   }
 }
 </script>

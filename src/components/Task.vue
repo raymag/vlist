@@ -1,17 +1,29 @@
 <template>
   <article>
-      <span>Clear Room</span>
-      <button>x</button>
-    </article>
+    <span>{{ task }}</span>
+    <button v-on:click="del()">x</button>
+  </article>
 </template>
 
 <script>
 export default {
-  name: 'Task',
+  name: "Task",
   props: {
-    task: String
-  }
-}
+    task: String,
+    id: Number,
+    refresh: Function,
+  },
+  methods: {
+    del() {
+      const todoList = JSON.parse(localStorage.getItem("todoList"));
+      if (todoList) {
+        todoList.splice(this.id, 1);
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+        this.refresh();
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
