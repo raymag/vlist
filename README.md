@@ -1,4 +1,7 @@
-# vlist
+# VList
+A very simple Todo List App made with VueJS.
+![screenshot](https://user-images.githubusercontent.com/29918030/126932509-661dd0bc-ce51-4aaa-b7ba-86b33f998958.png)
+
 
 ## Project setup
 ```
