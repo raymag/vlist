@@ -1,12 +1,25 @@
 <template>
-  <input type="text" placeholder="Task" v-bind:value="task" />
+  <input type="text" placeholder="Task" v-model="taskText" v-on:keydown="keydownHandler($event)" />
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    task: String
+  name: 'Input',
+  data() {
+      return {
+          taskText: '',
+      }
+  },
+  methods: {
+      add() {
+          console.log(this.taskText);
+          this.taskText = '';
+      },
+      keydownHandler(e){
+          if (e.keyCode === 13){
+              this.add();
+          }
+      }
   }
 }
 </script>
