@@ -5,7 +5,9 @@
       <Input :refresh="refresh" />
       <TaskList :refresh="refresh" :tasks="todoList" />
 
-    <span id="deleteAll" v-on:click="delAll()">Apagar Tudo</span>
+      <div id="deleteAll">
+        <span v-on:click="delAll()">Apagar Tudo</span>
+      </div>
     </main>
   </div>
 </template>
@@ -74,15 +76,17 @@ main {
 }
 
 #deleteAll {
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 100%;
+}
+#deleteAll span {
+  padding: 10px;
   text-decoration: underline;
   color: rgba(69, 134, 123, 0.835);
   cursor: pointer;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  margin-right: 60px;
-  margin-bottom: 30px;
 }
 
 </style>
